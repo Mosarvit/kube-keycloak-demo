@@ -1,0 +1,8 @@
+{
+  "realm": "L-REALM",
+  "auth-server-url": "http://localhost:30949/auth/",
+  "ssl-required": "external",
+  "resource": "l-ui",
+  "public-client": true,
+  "confidential-port": 0
+}
