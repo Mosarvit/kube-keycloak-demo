@@ -12,7 +12,7 @@ const Secured = () => {
     // const keycloak = Keycloak("/keycloak.json");
     let kcConfig = {
       realm: "NewReal",
-      url: "http://keycloak.192.168.64.11.nip.io/auth/",
+      url: "http://18.196.45.70:31958/auth/",
       clientId: "l-ui",
       "enable-cors": true,
       "public-client": true
@@ -45,8 +45,8 @@ const Secured = () => {
           </div>
         </div>
       ) : (
-        <div>Waiting to authenticate</div>
-      )}
+          <div>Waiting to authenticate</div>
+        )}
     </div>
   );
 };

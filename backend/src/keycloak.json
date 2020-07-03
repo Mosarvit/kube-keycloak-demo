@@ -1,6 +1,6 @@
 {
   "realm": "NewReal",
-  "auth-server-url": "https://keycloak.192.168.64.11.nip.io/auth/",
+  "auth-server-url": "http://18.196.45.70:31958/auth/",
   "ssl-required": "external",
   "resource": "l-ui",
   "public-client": true,

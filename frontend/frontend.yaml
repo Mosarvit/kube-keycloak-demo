@@ -38,9 +38,9 @@ spec:
     spec:
       containers:
         - name: demo-kube-keycloak-react-frontend
-          image: mosarvit/l-ui:latest
+          image: demo-kube-keycloak-react-frontend:2
           command: ["/bin/sh", "-c", "npm run build:prod && serve -s build"]
-          imagePullPolicy: Always
+          imagePullPolicy: Never
           ports:
             - containerPort: 5000
           stdin: true

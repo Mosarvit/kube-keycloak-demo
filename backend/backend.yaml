@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: kube-demo-backend
+        image: kube-demo-backend:6
         imagePullPolicy: Never
         env:
         - name: KEYCLOAK_URL
@@ -42,3 +42,4 @@ spec:
           httpGet:
             path: /public
             port: 8080
+      terminationGracePeriodSeconds: 30

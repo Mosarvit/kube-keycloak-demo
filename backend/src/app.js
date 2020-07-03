@@ -25,17 +25,17 @@ var app = express();
 app.use(bodyParser.json());
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
+app.use(cors())
 // Enable CORS support
-app.use(
-  cors({
-    origin: ["http://keycloak.192.168.64.11.nip.io", "http://localhost/3000"],
-    methods: "GET, POST, OPTIONS",
-    allowedHeaders: "Content-Type, authorization",
-    exposedHeaders: "access-token",
-    credentials: true
-  })
-);
+// app.use(
+//   cors({
+//     origin: ["*"],
+//     methods: "GET, POST, OPTIONS",
+//     allowedHeaders: "Content-Type, authorization",
+//     exposedHeaders: "access-token",
+//     credentials: true
+//   })
+// );
 
 // Create a session-store to be used by both the express-session
 // middleware and the keycloak middleware.
@@ -68,25 +68,25 @@ app.use(
   })
 );
 
-app.get("/public", function(req, res) {
-  res.json({ message: "public" });
+app.get("/public", function (req, res) {
+  res.json({ message: "public1" });
 });
 
-app.get("/secured", keycloak.protect("realm:user"), function(req, res) {
+app.get("/secured", keycloak.protect("realm:user"), function (req, res) {
   const authorizationHeader = req.headers["authorization"];
   const accessToken = authorizationHeader.split(" ")[1];
   console.log("accessToken:" + accessToken);
   res.json({ message: "secured" });
 });
 
-app.get("/admin", keycloak.protect(), function(req, res) {
+app.get("/admin", keycloak.protect(), function (req, res) {
   res.json({ message: "admin" });
 });
 
-app.use("*", function(req, res) {
+app.use("*", function (req, res) {
   res.send("Not found!");
 });
 
-app.listen(8080, function() {
+app.listen(8080, function () {
   console.log("Started at port 8080");
 });
