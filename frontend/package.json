@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:local": "REACT_APP_L_AUTHENTICATION_SERVER_HOST=localhost:7000 REACT_APP_L_KEYCLOAK_SERVER_HOST=18.194.173.231:31416 react-scripts start",
+    "start:local": "REACT_APP_L_AUTHENTICATION_SERVER_HOST=localhost:7000 REACT_APP_L_KEYCLOAK_SERVER_HOST=localhost:30949 react-scripts start",
     "start": "REACT_APP_L_AUTHENTICATION_SERVER_HOST=localhost:31285 REACT_APP_L_KEYCLOAK_SERVER_HOST=localhost:30949 react-scripts start",
     "build:test": "REACT_APP_L_AUTHENTICATION_SERVER_HOST=l-authentication-server:3000 REACT_APP_L_KEYCLOAK_SERVER_HOST=l-keycloak-server:8080 react-scripts build",
     "build:prod": "REACT_APP_L_AUTHENTICATION_SERVER_HOST=localhost:31285 REACT_APP_L_KEYCLOAK_SERVER_HOST=localhost:30949 react-scripts build",

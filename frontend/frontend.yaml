@@ -1,43 +1,51 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: kube-demo-react-frontend
-  labels:
-    app: kube-demo-react-frontend
+  name: demo-kube-keycloak-react-frontend
 spec:
+  selector:
+    app: demo-kube-keycloak-react-frontend
+
   ports:
-    - name: http
+    - protocol: TCP
       port: 5000
       targetPort: 5000
-  selector:
-    app: frontend
-  type: LoadBalancer
+  type: NodePort
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kube-demo-react-frontend
-  namespace: default
+  name: demo-kube-keycloak-react-frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: kube-demo-react-frontend
+      app: demo-kube-keycloak-react-frontend
+      track: stable
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  revisionHistoryLimit: 1
   template:
     metadata:
       labels:
-        app: kube-demo-react-frontend
+        app: demo-kube-keycloak-react-frontend
+        track: stable
+      name: demo-kube-keycloak-react-frontend
     spec:
       containers:
-        - name: kube-demo-react-frontend
-          image: kube-demo-react-frontend
+        - name: demo-kube-keycloak-react-frontend
+          image: mosarvit/l-ui:latest
           command: ["/bin/sh", "-c", "npm run build:prod && serve -s build"]
-          imagePullPolicy: Never
-          env:
+          imagePullPolicy: Always
           ports:
-            - name: http
-              containerPort: 5000
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 5000
+            - containerPort: 5000
+          stdin: true
+          tty: true
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30

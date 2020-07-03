@@ -12,10 +12,8 @@ RUN npm install -g serve
 
 COPY . ./
 
-RUN npm run test-ci
-
 EXPOSE 5000
 
 # RUN npm run build:test
 
-CMD ["npm", "start"]
+# CMD ["serve", "-s", "build"]
